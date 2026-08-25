@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>A Little Invitation</title>
+<meta name="description" content="I made this little website because I wanted to ask you something.">
+
+<!-- Fonts: Fraunces (display, personal handwritten-adjacent serif) + Inter (body) + IBM Plex Mono (utility labels) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,480;0,9..144,600;1,9..144,460&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Grain overlay -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- Signature element: hand-drawn step progress -->
+<div class="step-dots" id="step-dots" aria-hidden="true"></div>
+
+<!-- Floating music toggle -->
+<button id="music-toggle" class="music-toggle" aria-pressed="false" aria-label="Toggle background music">
+  <span class="note">♪</span>
+</button>
+<audio id="bg-music" loop preload="none"></audio>
+
+<main id="app">
+
+  <!-- 1. OPENING -->
+  <section id="opening" class="screen opening" data-section>
+    <div class="opening__content reveal">
+      <p class="eyebrow" data-eyebrow></p>
+      <h1 class="display-xl">
+        <span class="line" data-line1></span>
+        <span class="line" data-line2></span>
+      </h1>
+      <button class="btn btn--primary" data-open-next>
+        <span data-btn-label></span>
+        <span class="arrow">→</span>
+      </button>
+    </div>
+    <div class="opening__mark" aria-hidden="true">
+      <svg viewBox="0 0 120 100" width="90" height="75" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- hand-drawn envelope doodle -->
+        <path d="M10 24 C10 20 13 17 17 17 L103 17 C107 17 110 20 110 24 L110 78 C110 82 107 85 103 85 L17 85 C13 85 10 82 10 78 Z" stroke="var(--pine)" stroke-width="2.4" stroke-linejoin="round" fill="var(--card)"/>
+        <path d="M12 20 L59 55 L108 20" stroke="var(--pine)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M52 46 C55 41 63 41 66 46" stroke="var(--rust)" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        <circle cx="59" cy="8" r="3" fill="var(--rust)"/>
+        <path d="M20 6 C24 3 28 3 31 6" stroke="var(--taupe)" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+        <path d="M90 4 C93 8 93 12 90 15" stroke="var(--taupe)" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- 2. THE ASK -->
+  <section id="invitation" class="screen" data-section>
+    <div class="content-block reveal-on-scroll">
+      <p class="eyebrow">the ask</p>
+      <h2 class="display-lg" data-inv-title></h2>
+      <p class="body-lg" data-inv-message></p>
+      <p class="body-lg subtitle" data-inv-subtitle></p>
+      <button class="btn btn--primary" data-goto="calendar">
+        <span>Keep going</span><span class="arrow">→</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- 3. CALENDAR -->
+  <section id="calendar" class="screen" data-section>
+    <div class="content-block reveal-on-scroll">
+      <p class="eyebrow">step one</p>
+      <h2 class="display-lg" data-cal-title></h2>
+      <p class="body-lg subtitle" data-cal-subtitle></p>
+
+      <div class="legend" data-legend></div>
+
+      <div class="calendar-wrap">
+        <div class="calendar-nav">
+          <button class="cal-nav-btn" id="cal-prev" aria-label="Previous month">‹</button>
+          <p class="cal-month" id="cal-month-label"></p>
+          <button class="cal-nav-btn" id="cal-next" aria-label="Next month">›</button>
+        </div>
+        <div class="calendar-grid" id="calendar-grid" role="grid"></div>
+      </div>
+
+      <p class="picked-line" id="picked-line" aria-live="polite"></p>
+
+      <!-- Time selection -->
+      <div class="time-select" id="time-select" hidden>
+        <p class="eyebrow" data-time-title></p>
+        <div class="time-options" id="time-options"></div>
+      </div>
+
+      <button class="btn btn--primary" id="calendar-continue" hidden data-goto="activities">
+        <span>Keep going</span><span class="arrow">→</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- 4. ACTIVITIES -->
+  <section id="activities" class="screen" data-section>
+    <div class="content-block reveal-on-scroll">
+      <p class="eyebrow">step two</p>
+      <h2 class="display-lg" data-act-title></h2>
+      <p class="body-lg subtitle" data-act-subtitle></p>
+
+      <div class="activity-grid" id="activity-grid"></div>
+
+      <button class="btn btn--primary" id="activities-continue" disabled data-goto="venue">
+        <span>Keep going</span><span class="arrow">→</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- 5. VENUE -->
+  <section id="venue" class="screen" data-section>
+    <div class="content-block reveal-on-scroll">
+      <p class="eyebrow">step three</p>
+      <h2 class="display-lg" data-venue-title></h2>
+
+      <div class="venue-card postcard">
+        <p class="venue-name" data-venue-name></p>
+        <p class="venue-address" data-venue-address></p>
+        <p class="venue-desc" data-venue-desc></p>
+      </div>
+
+      <button class="btn btn--primary" data-goto="summary">
+        <span>See the plan</span><span class="arrow">→</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- 6. SUMMARY -->
+  <section id="summary" class="screen" data-section>
+    <div class="content-block reveal-on-scroll">
+      <p class="eyebrow">the plan</p>
+      <h2 class="display-lg" data-summary-title></h2>
+
+      <div class="summary-card postcard" id="summary-card">
+        <div class="summary-row"><span class="summary-icon">📅</span><span id="summary-date"></span></div>
+        <div class="summary-row"><span class="summary-icon">🕖</span><span id="summary-time"></span></div>
+        <div class="summary-row"><span class="summary-icon" id="summary-activity-icon"></span><span id="summary-activity"></span></div>
+        <div class="summary-row"><span class="summary-icon">📍</span><span id="summary-venue"></span></div>
+        <p class="summary-question">Looks good?</p>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn--primary" data-goto="response" data-summary-confirm>
+          <span data-summary-confirm-label></span><span class="arrow">→</span>
+        </button>
+        <button class="btn btn--ghost" data-goto="calendar" data-summary-change>
+          <span data-summary-change-label></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. RESPONSE -->
+  <section id="response" class="screen" data-section>
+    <div class="content-block reveal-on-scroll">
+      <p class="eyebrow">last thing</p>
+
+      <div class="field-block">
+        <label class="field-label" for="guest-name" data-name-title></label>
+        <input type="text" id="guest-name" class="text-input" data-name-placeholder required autocomplete="name">
+      </div>
+
+      <h2 class="display-lg" data-response-title></h2>
+      <div class="response-grid" id="response-grid"></div>
+
+      <div class="field-block">
+        <label class="field-label" for="guest-message" data-message-title></label>
+        <textarea id="guest-message" class="text-input textarea" rows="3" data-message-placeholder></textarea>
+      </div>
+
+      <p class="form-error" id="form-error" aria-live="polite" hidden></p>
+
+      <button class="btn btn--primary" id="submit-response">
+        <span data-submit-label></span><span class="arrow">→</span>
+      </button>
+      <p class="already-answered" id="already-answered" hidden></p>
+    </div>
+  </section>
+
+  <!-- 8. CONFIRMATION -->
+  <section id="confirmation" class="screen confirmation" data-section>
+    <div class="content-block reveal-on-scroll">
+      <div class="confirm-mark" aria-hidden="true">✦</div>
+      <h2 class="display-lg" id="confirm-title"></h2>
+      <p class="body-lg subtitle" id="confirm-line"></p>
+
+      <button class="btn btn--primary" id="confirm-calendar-btn">
+        <span data-confirm-calendar-label></span><span class="arrow">→</span>
+      </button>
+      <button class="btn btn--ghost" id="confirm-restart-btn">
+        <span data-confirm-restart-label></span>
+      </button>
+    </div>
+  </section>
+
+</main>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
