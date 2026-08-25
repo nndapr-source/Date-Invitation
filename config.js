@@ -16,8 +16,8 @@ const CONFIG = {
   // WHO
   // ----------------------------------------------------------
   person: {
-    inviterName: "Alex",     // you
-    guestName: "" ,          // leave blank to just ask for it on the page
+    inviterName: "Nanda",     // you
+    guestName: "Tya" ,          // leave blank to just ask for it on the page
   },
 
   // ----------------------------------------------------------
@@ -25,7 +25,7 @@ const CONFIG = {
   // ----------------------------------------------------------
   opening: {
     eyebrow: "A little invitation",
-    line1: "Hey, you.",
+    line1: "Hello, Tya.",
     line2: "I have a question for you.",
     buttonLabel: "Okay, I'm curious",
   },
@@ -47,15 +47,15 @@ const CONFIG = {
   // ----------------------------------------------------------
   availability: {
     "2026-08-28": { status: "unavailable" },
-    "2026-08-29": { status: "available", times: ["18:00", "19:00", "20:00"] },
-    "2026-08-30": { status: "unavailable" },
-    "2026-08-31": { status: "available", times: ["15:00", "18:00"] },
-    "2026-09-01": { status: "maybe" },
+    "2026-08-29": { status: "unavailable", 
+    "2026-08-30": { status: "available" }, times: ["09:00", "10:00", "11:00"] },
+    "2026-08-31": { status: "unavailable",
+    "2026-09-01": { status: "unavailable" },
     "2026-09-02": { status: "unavailable" },
     "2026-09-03": { status: "unavailable" },
     "2026-09-04": { status: "available", times: ["17:30", "19:30"] },
-    "2026-09-05": { status: "available", times: ["12:00", "18:00", "20:00"] },
-    "2026-09-06": { status: "maybe" },
+    "2026-09-05": { status: "available" }, times: ["09:00", "10:00", "11:00"] },
+    "2026-09-06": { status: "available" }, times: ["09:00", "10:00", "11:00"] },
   },
 
   calendarCopy: {
